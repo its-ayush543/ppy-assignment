@@ -45,6 +45,10 @@ This repository contains a Next.js application styled with Tailwind CSS. It incl
 - API routes are located in `app/api/`.
 - For any issues, please open an issue on GitHub.
 
+## UI
+<img width="1913" height="915" alt="image" src="https://github.com/user-attachments/assets/8b928e77-6e50-4223-a36e-372bf96e15b3" />
+
+
 ---
 
 **Author:** Ayush
