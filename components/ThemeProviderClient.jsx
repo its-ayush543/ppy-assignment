@@ -1,11 +1,6 @@
 "use client";
 
-import { ThemeProvider } from "next-themes";
-
+// This file is now a no-op since dark mode is removed.
 export default function ThemeProviderClient({ children }) {
-  return (
-    <ThemeProvider attribute="class" defaultTheme="system">
-      {children}
-    </ThemeProvider>
-  );
+  return <>{children}</>;
 }
