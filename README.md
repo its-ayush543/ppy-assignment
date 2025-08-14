@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# PPY Assignment
 
-First, run the development server:
+This repository contains a Next.js application styled with Tailwind CSS. It includes custom components and API routes for dashboard and MIS charting features.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Prerequisites
+- Node.js (v18 or higher recommended)
+- npm (comes with Node.js)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup Instructions
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. **Clone the repository:**
+	```powershell
+	git clone https://github.com/its-ayush543/ppy-assignment.git
+	cd ppy-assignment
+	```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies:**
+	```powershell
+	npm install
+	```
 
-## Learn More
+## Running the Application
 
-To learn more about Next.js, take a look at the following resources:
+1. **Start the development server:**
+	```powershell
+	npm run dev
+	```
+	The app will be available at [http://localhost:3000](http://localhost:3000).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
+- `app/` - Main Next.js app directory (pages, API routes)
+- `components/` - React components
+- `public/` - Static assets
+- `package.json` - Project dependencies and scripts
+- `tailwind.config.js` - Tailwind CSS configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Custom Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
 
-## Deploy on Vercel
+## Additional Notes
+- Tailwind CSS is used for styling.
+- API routes are located in `app/api/`.
+- For any issues, please open an issue on GitHub.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Author:** Ayush
