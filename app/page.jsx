@@ -24,17 +24,31 @@ export default function Page() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/dashboard/${days}`)
-      .then((res) => res.json())
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch(`/api/dashboard/${days}`, { signal })
+      .then((res) => {
+        if (!res.ok) throw new Error(`API error: ${res.status}`);
+        return res.json();
+      })
       .then((data) => {
-        setAum(data.aum);
-        setSip(data.sip);
-        setStats(data.stats);
-        setClientsData(data.clients);
-        setSipBusinessData(data.sipBusiness);
-        setMonthlyMISData(data.monthlyMIS);
-        setLoading(false);
-      });
+        setAum(data.aum ?? 0);
+        setSip(data.sip ?? 0);
+        setStats(data.stats ?? {});
+        setClientsData(data.clients ?? []);
+        setSipBusinessData(data.sipBusiness ?? []);
+        setMonthlyMISData(data.monthlyMIS ?? []);
+      })
+      .catch((err) => {
+        // simple error handling: log and keep existing state
+        // In production show an error UI to the user
+        // eslint-disable-next-line no-console
+        console.error("Failed to fetch dashboard:", err);
+      })
+      .finally(() => setLoading(false));
+
+    return () => controller.abort();
   }, [days]);
 
   return (

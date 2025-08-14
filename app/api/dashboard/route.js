@@ -1,14 +1,14 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 function seedRandom(seed) {
   let s = seed % 2147483647;
   if (s <= 0) s += 2147483646;
-  return () => (s = s * 16807 % 2147483647) / 2147483647;
+  return () => (s = (s * 16807) % 2147483647) / 2147483647;
 }
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
-  const days = Number(searchParams.get('days') || '7');
+  const days = Number(searchParams.get("days") || "7");
   const rand = seedRandom(days);
 
   const baseAum = 125000000;
@@ -25,34 +25,45 @@ export async function GET(req) {
   };
 
   const clients = Array.from({ length: 12 }).map((_, i) => ({
-    name: `Client ${i+1}`,
-    value: Math.floor(rand() * 100 + 20)
+    name: `Client ${i + 1}`,
+    value: Math.floor(rand() * 100 + 20),
   }));
 
   const sipBusiness = Array.from({ length: days }).map((_, i) => ({
-    date: `${i+1}`,
+    date: `${i + 1}`,
     bar: Math.floor(rand() * 100 + 50),
     line: Math.floor(rand() * 80 + 40),
   }));
 
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const monthlyMis = months.map(m => ({
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const monthlyMIS = months.map((m) => ({
     month: m,
-    aum: Math.floor(baseAum * (0.8 + rand()*0.4)),
-    sip: Math.floor(baseSip * (0.8 + rand()*0.4)),
-    clients: Math.floor(1000 + rand()*500),
+    aum: Math.floor(baseAum * (0.8 + rand() * 0.4)),
+    sip: Math.floor(baseSip * (0.8 + rand() * 0.4)),
+    clients: Math.floor(1000 + rand() * 500),
   }));
 
+  // Return a consistent top-level response so clients (app/page) can consume it
   return NextResponse.json({
-    overview: {
-      aumValue: Math.floor(baseAum * (1 + aumMoM/100)),
-      aumMoM,
-      sipValue: Math.floor(baseSip * (1 + sipMoM/100)),
-      sipMoM,
-    },
+    aum: Math.floor(baseAum * (1 + aumMoM / 100)),
+    sip: Math.floor(baseSip * (1 + sipMoM / 100)),
     stats,
     clients,
     sipBusiness,
-    monthlyMis
+    monthlyMIS,
   });
 }

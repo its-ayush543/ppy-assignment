@@ -1,4 +1,4 @@
-export async function GET(req, {params}) {
+export async function GET(req, { params }) {
   const { days } = await params;
   const numDays = parseInt(days, 10);
 
@@ -34,14 +34,7 @@ export async function GET(req, {params}) {
   };
 
   return new Response(
-    JSON.stringify({
-      aum,
-      sip,
-      stats,
-      clients,
-      sipBusiness,
-      monthlyMIS,
-    }),
+    JSON.stringify({ aum, sip, stats, clients, sipBusiness, monthlyMIS }),
     { status: 200 }
   );
 }
