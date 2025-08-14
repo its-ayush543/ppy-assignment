@@ -8,7 +8,6 @@ export default function ClientBubbleChartContainer() {
     fetch("/api/dashboard")
       .then((res) => res.json())
       .then((result) => {
-        // Transform API stats to bubble chart format
         const bubbles = [
           {
             label: "Online",

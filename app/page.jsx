@@ -9,7 +9,6 @@ import { useState, useEffect } from "react";
 export default function Page() {
   const [days, setDays] = useState(7);
   const [loading, setLoading] = useState(true);
-  // Sample fallback data for charts
   const sampleClientsData = [
     { x: 43, y: 50 },
     { x: 48, y: 25 },
@@ -74,9 +73,6 @@ export default function Page() {
         );
       })
       .catch((err) => {
-        // simple error handling: log and keep existing state
-        // In production show an error UI to the user
-        // eslint-disable-next-line no-console
         console.error("Failed to fetch dashboard:", err);
       })
       .finally(() => setLoading(false));

@@ -24,6 +24,12 @@ export async function GET(req) {
     newSIP: Math.floor(rand() * 120 + 60),
   };
 
+  const bubbleClients = [
+    { name: "Online", value: Math.floor(rand() * 100 + 20) },
+    { name: "New", value: Math.floor(rand() * 10 + 1) },
+    { name: "Active", value: Math.floor(rand() * 500 + 100) },
+    { name: "InActive", value: Math.floor(rand() * 4000 + 500) },
+  ];
   const clients = Array.from({ length: 12 }).map((_, i) => ({
     name: `Client ${i + 1}`,
     value: Math.floor(rand() * 100 + 20),
@@ -57,12 +63,12 @@ export async function GET(req) {
     clients: Math.floor(1000 + rand() * 500),
   }));
 
-  // Return a consistent top-level response so clients (app/page) can consume it
   return NextResponse.json({
     aum: Math.floor(baseAum * (1 + aumMoM / 100)),
     sip: Math.floor(baseSip * (1 + sipMoM / 100)),
     stats,
     clients,
+    bubbleClients,
     sipBusiness,
     monthlyMIS,
   });
